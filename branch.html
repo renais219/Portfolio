@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eleatsai | Entrepreneur Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat:wght@700&family=Inter:ital,wght@1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --neon-pink: #ff007f;
+            --neon-blue: #00f2ff;
+            --neon-purple: #bc13fe;
+        }
+
+        body {
+            background-color: #050505;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- 1. Loading Animation --- */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: transform 0.8s cubic-bezier(0.87, 0, 0.13, 1);
+        }
+
+        .signature-svg {
+            width: 300px;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: write 2.5s ease-in-out forwards;
+            filter: drop-shadow(0 0 10px var(--neon-purple));
+        }
+
+        @keyframes write {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .loader-finish {
+            transform: translateY(-100%);
+        }
+
+        /* --- 2. Typography --- */
+        .f1-title {
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+            font-style: italic;
+            line-height: 0.9;
+            letter-spacing: -2px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- 3. Auto-scrolling Gallery --- */
+        .scroller {
+            max-width: 100%;
+            overflow: hidden;
+            mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+        }
+
+        .scroller__inner {
+            display: flex;
+            gap: 1.5rem;
+            width: max-content;
+            animation: scroll 30s linear infinite;
+        }
+
+        .scroller__inner:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            to { transform: translateX(calc(-50% - 0.75rem)); }
+        }
+
+        .gallery-item {
+            width: 350px;
+            aspect-ratio: 16/9;
+            background: #111;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* --- 4. Section Styling --- */
+        .spec-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border-left: 4px solid var(--neon-blue);
+            padding: 2rem;
+            transition: 0.3s;
+        }
+
+        .spec-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <svg class="signature-svg" viewBox="0 0 400 150">
+            <text x="50%" y="50%" text-anchor="middle" fill="none" 
+                  stroke="url(#grad)" stroke-width="2" font-family="'Caveat', cursive" font-size="80">
+                eleatsai
+            </text>
+            <defs>
+                <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:var(--neon-pink);stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:var(--neon-blue);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:var(--neon-purple);stop-opacity:1" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+
+    <section class="min-h-screen flex flex-col justify-center px-8 md:px-20 pt-20">
+        <h1 class="f1-title text-6xl md:text-9xl mb-8">
+            Building the Future <br> at Full Throttle
+        </h1>
+        
+        <div class="scroller mt-10">
+            <div class="scroller__inner" id="gallery-list">
+                <div class="gallery-item" onclick="scrollToExp('exp1')"><img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80" class="w-full h-full object-cover opacity-60 hover:opacity-100"></div>
+                <div class="gallery-item" onclick="scrollToExp('exp2')"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80" class="w-full h-full object-cover opacity-60 hover:opacity-100"></div>
+                <div class="gallery-item" onclick="scrollToExp('exp3')"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80" class="w-full h-full object-cover opacity-60 hover:opacity-100"></div>
+                <div class="gallery-item" onclick="scrollToExp('exp1')"><img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80" class="w-full h-full object-cover opacity-60 hover:opacity-100"></div>
+                <div class="gallery-item" onclick="scrollToExp('exp2')"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80" class="w-full h-full object-cover opacity-60 hover:opacity-100"></div>
+                <div class="gallery-item" onclick="scrollToExp('exp3')"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80" class="w-full h-full object-cover opacity-60 hover:opacity-100"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="px-8 md:px-20 py-32 space-y-20">
+        <div id="exp1" class="spec-card">
+            <h3 class="text-pink-500 font-bold mb-2">PROJECT 01 // STARTUP FOUNDER</h3>
+            <h2 class="text-4xl font-black italic mb-4">THE NEXT BIG THING</h2>
+            <p class="text-gray-400 max-w-2xl">Scaled a SaaS platform from zero to 100k users. Focused on disruptive growth and agile product development in a high-stakes environment.</p>
+        </div>
+
+        <div id="exp2" class="spec-card" style="border-left-color: var(--neon-pink);">
+            <h3 class="text-blue-400 font-bold mb-2">PROJECT 02 // TECH STRATEGIST</h3>
+            <h2 class="text-4xl font-black italic mb-4">INNOVATION LABS</h2>
+            <p class="text-gray-400 max-w-2xl">Led cross-functional teams to deploy AI solutions for logistics. Optimized operations with a 40% efficiency increase.</p>
+        </div>
+
+        <div id="exp3" class="spec-card" style="border-left-color: var(--neon-purple);">
+            <h3 class="text-purple-500 font-bold mb-2">PROJECT 03 // VENTURE BUILDER</h3>
+            <h2 class="text-4xl font-black italic mb-4">VELOCITY CAPITAL</h2>
+            <p class="text-gray-400 max-w-2xl">Advising seed-stage startups on fundraising and market positioning. Driving momentum in the Web3 ecosystem.</p>
+        </div>
+    </section>
+
+    <script>
+        // Loading 完成後自動移除畫面
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('loader-finish');
+            }, 3000); // 3秒後完成動畫進入首頁
+        });
+
+        // 平滑滾動功能
+        function scrollToExp(id) {
+            document.getElementById(id).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
