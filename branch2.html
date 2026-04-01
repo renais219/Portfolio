@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eleatsai | Entrepreneur Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat:wght@700&family=Inter:ital,wght@0,400;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --neon-pink: #ff007f;
+            --neon-blue: #00f2ff;
+            --neon-purple: #bc13fe;
+        }
+
+        body {
+            background-color: #050505;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* --- 1. Loading Animation --- */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: transform 1s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
+        .signature-svg {
+            width: 350px;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: write 2.2s ease-in-out forwards;
+            filter: drop-shadow(0 0 15px var(--neon-purple));
+        }
+
+        @keyframes write { to { stroke-dashoffset: 0; } }
+        .loader-finish { transform: translateY(-100%); }
+
+        /* --- 2. Navigation Bar --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(5, 5, 5, 0.6);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover { color: var(--neon-pink); text-shadow: 0 0 8px var(--neon-pink); }
+
+        /* --- 3. Typography --- */
+        .f1-title {
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+            font-style: italic;
+            line-height: 0.85;
+            letter-spacing: -3px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- 4. Auto-scrolling Gallery --- */
+        .scroller { overflow: hidden; mask: linear-gradient(90deg, transparent, white 15%, white 85%, transparent); }
+        .scroller__inner { display: flex; gap: 1.5rem; width: max-content; animation: scroll 40s linear infinite; }
+        .scroller__inner:hover { animation-play-state: paused; }
+        @keyframes scroll { to { transform: translateX(calc(-50% - 0.75rem)); } }
+
+        .gallery-item {
+            width: 400px; aspect-ratio: 16/9; background: #111; border-radius: 4px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.15); transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .gallery-item:hover {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.4);
+            transform: scale(1.03) rotate(-1deg);
+        }
+
+        /* --- 5. Digital Footprint Section --- */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .social-item {
+            background: #050505;
+            padding: 4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-item:hover { background: #0a0a0a; }
+        .social-item::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 3px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+            transition: 0.5s;
+        }
+        .social-item:hover::after { width: 100%; }
+
+        .social-name { font-family: 'Archivo Black', sans-serif; font-size: 2.5rem; font-style: italic; text-transform: uppercase; }
+
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <svg class="signature-svg" viewBox="0 0 400 150">
+            <text x="50%" y="50%" text-anchor="middle" fill="none" 
+                  stroke="url(#grad)" stroke-width="2.5" font-family="'Caveat', cursive" font-size="90">
+                eleatsai
+            </text>
+            <defs>
+                <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:var(--neon-pink);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:var(--neon-blue);stop-opacity:1" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+
+    <nav>
+        <div class="text-xl font-black italic tracking-tighter" style="color: var(--neon-blue);">ELEATSAI.</div>
+        <div class="hidden md:flex space-x-8">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#footprint" class="nav-link">Footprint</a>
+            <a href="#" class="nav-link bg-white text-black px-4 py-1 hover:bg-pink-500 hover:text-white">Contact</a>
+        </div>
+    </nav>
+
+    <section class="min-h-screen flex flex-col justify-center px-8 md:px-20 pt-32">
+        <h1 class="f1-title text-7xl md:text-[10rem] mb-6">
+            BUILDING THE FUTURE<br>AT FULL THROTTLE.
+        </h1>
+        
+        <div class="scroller mt-10">
+            <div class="scroller__inner">
+                <div class="gallery-item" onclick="scrollToId('exp1')"><img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item" onclick="scrollToId('exp2')"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item" onclick="scrollToId('exp3')"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item" onclick="scrollToId('exp1')"><img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item" onclick="scrollToId('exp2')"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item" onclick="scrollToId('exp3')"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="px-8 md:px-20 py-32 space-y-12">
+        <h2 class="text-xs tracking-[0.5em] text-gray-500 uppercase mb-20 font-bold">/// Chosen Projects</h2>
+        <div id="exp1" class="border-t border-zinc-800 pt-12 grid md:grid-cols-2 gap-8 hover:bg-zinc-900/30 transition p-4">
+            <h2 class="text-5xl font-black italic">SaaS DISRUPTOR</h2>
+            <p class="text-zinc-400 text-lg">Revolutionizing the way remote teams collaborate. Led the seed round raising $2M and grew the user base by 300% in 12 months.</p>
+        </div>
+        <div id="exp2" class="border-t border-zinc-800 pt-12 grid md:grid-cols-2 gap-8 hover:bg-zinc-900/30 transition p-4">
+            <h2 class="text-5xl font-black italic">AI LOGISTICS</h2>
+            <p class="text-zinc-400 text-lg">Bridging the gap between legacy supply chains and predictive AI modeling. Focused on operational speed and precision.</p>
+        </div>
+    </section>
+
+    <section id="footprint" class="py-20 border-t border-zinc-800">
+        <div class="px-8 md:px-20 mb-12">
+            <h2 class="text-6xl font-black italic">DIGITAL FOOTPRINT</h2>
+            <p class="text-zinc-500 mt-4 tracking-widest uppercase text-sm">Connect across the internet.</p>
+        </div>
+        
+        <div class="social-grid">
+            <a href="https://linkedin.com" target="_blank" class="social-item">
+                <span class="text-xs text-zinc-500 mb-2 font-bold tracking-widest uppercase">Professional Network</span>
+                <span class="social-name text-blue-400">LinkedIn</span>
+            </a>
+            <a href="https://instagram.com" target="_blank" class="social-item">
+                <span class="text-xs text-zinc-500 mb-2 font-bold tracking-widest uppercase">Lifestyle & Updates</span>
+                <span class="social-name text-pink-500">Instagram</span>
+            </a>
+            <a href="https://twitter.com" target="_blank" class="social-item">
+                <span class="text-xs text-zinc-500 mb-2 font-bold tracking-widest uppercase">Deep Thoughts</span>
+                <span class="social-name text-purple-500">Twitter / X</span>
+            </a>
+        </div>
+    </section>
+
+    <footer class="py-10 text-center text-xs text-zinc-700 tracking-widest uppercase font-bold">
+        © 2024 eleatsai. All Systems Go.
+    </footer>
+
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('loader-finish');
+            }, 2500);
+        });
+
+        function scrollToId(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
