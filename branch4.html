@@ -63,18 +63,21 @@
             align-items: center;
         }
 
-        .nav-btn {
-            position: relative;
-            background: transparent;
-            color: white;
-            border: 1px solid var(--neon-blue);
-            padding: 0.6rem 1.8rem;
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
+     .nav-btn {
+    display: inline-flex; /* 改為 flex 確保文字置中 */
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: white;
+    border: 1px solid var(--neon-blue);
+    padding: 0.6rem 1.8rem;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-decoration: none; /* 移除超連結下劃線 */
+}
 
         .nav-btn:hover {
             background: var(--neon-blue);
@@ -209,7 +212,7 @@
         <div class="flex items-center space-x-10">
             <a href="#experience" class="hidden md:block text-[10px] tracking-[0.3em] font-bold uppercase hover:text-pink-500 transition">Experience</a>
             <a href="#footprint" class="hidden md:block text-[10px] tracking-[0.3em] font-bold uppercase hover:text-pink-500 transition">Footprint</a>
-            <button class="nav-btn">Connect</button>
+           <a href="#footprint" class="nav-btn inline-block text-center">Connect</a>
         </div>
     </nav>
 
